@@ -1,6 +1,5 @@
 package Modelo;
 
-
 public class Clientes {
 
     private int documentoIdentidad;
@@ -10,13 +9,13 @@ public class Clientes {
     private boolean libroPrestado;
     private String idLibroPrestado;
 
-    public Clientes(int documentoIdentidad, String nombreCompleto, String telefono, String direccion, boolean libroPrestado, String idLibroPrestado) {
+    public Clientes(int documentoIdentidad, String nombreCompleto, String telefono, String direccion) {
         this.documentoIdentidad = documentoIdentidad;
         this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.libroPrestado = libroPrestado;
-        this.idLibroPrestado = idLibroPrestado;
+        this.libroPrestado = false;
+        this.idLibroPrestado = null;
     }
 
     public void prestarLibro(String idLibro) {
@@ -25,7 +24,7 @@ public class Clientes {
     }
 
     public boolean recibirLibro(String idlibroDevuelto) {
-        if (idLibroPrestado == null || !idLibroPrestado.equalsIgnoreCase(idlibroDevuelto)) {
+        if (!this.libroPrestado || idLibroPrestado == null || !idLibroPrestado.equalsIgnoreCase(idlibroDevuelto)) {
             System.out.println("Error el id del libro es incorrecto" + idlibroDevuelto);
             return false;
         }
@@ -33,6 +32,7 @@ public class Clientes {
         idLibroPrestado = null;
         return true;
     }
+
     public void mostrarInformacion() {
         System.out.println("Documento: " + documentoIdentidad);
         System.out.println("Nombre: " + nombreCompleto);
